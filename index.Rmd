@@ -1,0 +1,29 @@
+---
+title: "Help File for Permeability Predictor"
+author: "Jeff Wolbach"
+date: "Friday, September 19, 2014"
+output: html_document
+---
+
+One of the primary considerations when designing new drugs is the degree to which your candidate molecule will be orally bioavailable.  A high degree of oral bioavailability allows your drug to be administered as a pill, rather than as an injection.  Administration as a pill leads to much greater patient compliance with treatment, as well as making the treatment less expensive.
+
+This applet takes as input a small number of physical characteristics of the drug molecule and predicts a value for the logarithm of apparent permeability.  The apparent permeability is measured experimentally in an <i>in vitro</i> (in test tube) assay, and the assay results have been shown to be well-correlated with measured fractional drug absorbance in humans. The <i>in vitro</i> permeability assay is much less expensive than performing as <i>in vivo</i> (in living thing) measurement of the drug absorbance.
+
+The inputs are:
+
+####log P
+The logarithm of the octanol-water partition coefficient for the molecule.  This measures whether the molecule dissolves more easily in water (small log P) or in grease/oils (large log P).  This is important for bioavailability because the drug has to pass from the digestive fluids (~water) into cell membranes in the intestines (~oil).  Typical values of log P for drug molecules are 2-6.
+
+####TPSA
+The total polar surface area of the molecule.  Generally, molecules with smaller surface areas are more bioavailable than molecules with larger surface areas.  Also, more polar molecules are more easily dissolved in water than oils; smaller values of TPSA lead to greater bioavailability.  Typical values for drug molecules are 10-40.
+
+####pKa
+The negative base10-logarithm of the acidity constant for the molecule.  Measures how easily the molecule can gain/lose protons and hence become charged.  Neutral molecules are more bioavailable than charged molecules.  While this is a molecular characteristic, the relevant quantity in the model is (pKa-pH), which measures the likelihood the molecule will be charged in solution.
+
+####pH
+The negative base10-logarithm of the H+ activity in the assay solution.  Blood pH is 7.4, and intestinal fluids have pH in the range 6-7.
+
+###Plot
+It would be very difficult to develop a drug that falls in the red region of the plot.  Drugs that fall in the green region are much more likely candidates for development.
+
+
