@@ -49,22 +49,83 @@
     <h2>Description of Problem</h2>
   </hgroup>
   <article data-timings="">
-    <p>Oral bioavailability is an important consideration in drug development</p>
+    <ul>
+<li><p>Oral bioavailability is an important consideration in drug development</p></li>
+<li><p>High oral bioavailability necessary for dosing as tablets</p></li>
+<li><p>Tablet dosing leads to much stronger patient compliance and less-expensive treatment.</p></li>
+<li><p>It is very economically advantageous to fail compounds with poor oral bioavailability early in development</p></li>
+</ul>
 
-<p>High oral bioavailability necessary for dosing as tablets</p>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
 
-<p>Tablet dosing leads to much stronger patient compliance and less-expensive treatment.</p>
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Available Measures</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>Ideal measure would be fractional drug absorbance in humans.  But ... <i>in vivo</i> assays are difficult and expensive</li>
+<li><i>in vitro</i> assays are much more cost-effective and parallelizable</li>
+<li>Assays have been shown to correlate well with fractional drug absorbance.</li>
+</ul>
 
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="assets/fig/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>Even Cheaper Than Experiment</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>We can model the in vitro permeability using a few physical parameters of our molecules</li>
+</ul>
+
+<p>log P(apparent) = -1.64 + 0.85 * log K(O/W) - 0.025 * TPSA - 0.27 * (pKa - pH)</p>
+
+<p>K(O/w) = octanol-water partition coefficient</p>
+
+<p>TPSA = Total polar surface area of molecule</p>
+
+<p>pKa = -base-10 logarithm of acidity constant for molecule</p>
+
+<p>pH = -base-10 logarithm of H+ activity in assay solution</p>
+
+<p>(pKa - pH) = likelihood molecule is charged</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Utility of Application</h2>
   </hgroup>
   <article data-timings="">
     
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="assets/fig/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <ul>
+<li>Properties are easily calculated from a webform</li>
+<li>Analyst can visualize the permeability of their compound, even before synthesis.</li>
+<li><p>Allows analysts to concentrate on making compounds that will not fail early</p></li>
+<li><p>Next generation of app will allow user to draw molecule to create a fully-automated workflow.</p></li>
+</ul>
+
+</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -81,8 +142,20 @@
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='Available Measures'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Even Cheaper Than Experiment'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Utility of Application'>
+         4
       </a>
     </li>
   </ul>

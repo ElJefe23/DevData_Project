@@ -14,16 +14,90 @@ knit        : slidify::knit2slides
 
 ## Description of Problem
 
-Oral bioavailability is an important consideration in drug development
+- Oral bioavailability is an important consideration in drug development
 
-High oral bioavailability necessary for dosing as tablets
+- High oral bioavailability necessary for dosing as tablets
 
-Tablet dosing leads to much stronger patient compliance and less-expensive treatment.
+- Tablet dosing leads to much stronger patient compliance and less-expensive treatment.
+
+- It is very economically advantageous to fail compounds with poor oral bioavailability early in development
 
 
---- .class #id 
+--- &twocol w1:40% w2:60%
 
-## Slide 2
+## Available Measures
+*** =left
+- Ideal measure would be fractional drug absorbance in humans.  But ... <i>in vivo</i> assays are difficult and expensive
+- <i>in vitro</i> assays are much more cost-effective and parallelizable
+- Assays have been shown to correlate well with fractional drug absorbance.
+
+*** =right
+```{r,echo=FALSE, results='asis'}
+logPlot<-seq(-3, 2, by=0.04)
+PlotXs<-10^(logPlot)
+PlotYs<-100/(1+(1/(sqrt(10)*PlotXs)))
+par(bg="white", pin=c(5,5))
+plot(logPlot,PlotYs,xlab="log10 Permability",ylab="% Frac Absorbed, Human", type="n")
+x<-par("usr")
+xRed<-(2*x[1]+x[2])/3
+rect(x[1],x[3],xRed,x[4],col="firebrick3")
+xGrn<-(x[1]+2*x[2])/3
+rect(xGrn,x[3],x[2],x[4],col="lightgreen")
+points(logPlot,PlotYs, type="l", col="darkblue", lwd=3)
+```
+
+--- .class #id
+
+## Even Cheaper Than Experiment
+
+- We can model the in vitro permeability using a few physical parameters of our molecules
+
+log P(apparent) = -1.64 + 0.85 * log K(O/W) - 0.025 * TPSA - 0.27 * (pKa - pH)
+
+K(O/w) = octanol-water partition coefficient
+
+TPSA = Total polar surface area of molecule
+
+pKa = -base-10 logarithm of acidity constant for molecule
+
+pH = -base-10 logarithm of H+ activity in assay solution
+
+(pKa - pH) = likelihood molecule is charged
+
+
+--- &twocol w1:40% w2:60%
+
+## Utility of Application
+
+*** =left
+```{r,echo=FALSE}
+pAppModel<-function(pH, pKa, logP, TPSA) {
+  -1.64 + 0.85*logP - 0.025*TPSA - 0.27*(pKa-pH)
+}
+logPlot<-seq(-3, 2, by=0.04)
+PlotXs<-10^(logPlot)
+PlotYs<-100/(1+(1/(sqrt(10)*PlotXs)))
+par(bg="lightgray", pin=c(5,4))
+plot(logPlot,PlotYs,xlab="log10 Permability",ylab="% Frac Absorbed, Human", type="n")
+x<-par("usr")
+xRed<-(2*x[1]+x[2])/3
+rect(x[1],x[3],xRed,x[4],col="firebrick3")
+xGrn<-(x[1]+2*x[2])/3
+rect(xGrn,x[3],x[2],x[4],col="lightgreen")
+points(logPlot,PlotYs, type="l", col="darkblue", lwd=3)
+xCalc<-pAppModel(6.5, 8.2, 3.1, 40)
+xCalc2<-10^xCalc
+yCalc<-100/(1+(1/(sqrt(10)*xCalc2)))
+points(xCalc, yCalc, type="p", pch=16, col="yellow", cex=4.5)
+```
+
+*** =right
+- Properties are easily calculated from a webform
+- Analyst can visualize the permeability of their compound, even before synthesis.
+- Allows analysts to concentrate on making compounds that will not fail early
+
+- Next generation of app will allow user to draw molecule to create a fully-automated workflow.
+
 
 
 
